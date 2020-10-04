@@ -14,7 +14,7 @@ import logger from '@shared/Logger';
 // import * as serviceAccount from '../env/nodejs-hosting-demo-firebase-adminsdk-np6sq-c73fae9756.json';
 import * as admin from 'firebase-admin';
 // tslint:disable-next-line: no-var-requires
-const serviceAccount = require('../env/nodejs-hosting-demo-firebase-adminsdk-np6sq-c73fae9756.json');
+const serviceAccount = require('../env/food-4dd37-firebase-adminsdk-i1w5b-cd5b497872.json');
 // Init express
 const app = express();
 
@@ -51,7 +51,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://nodejs-hosting-demo.firebaseio.com'
+    databaseURL: 'https://food-4dd37.firebaseio.com'
 });
 
 /************************************************************************************

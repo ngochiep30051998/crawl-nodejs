@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "589211414820",
+    "firebase_url": "https://food-4dd37.firebaseio.com",
+    "project_id": "food-4dd37",
+    "storage_bucket": "food-4dd37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589211414820:android:85852dc46a2925bf8883b1",
+        "android_client_info": {
+          "package_name": "com.ionicapp.fastfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589211414820-qjdghiijvlne6c0e9qcngj254qg2gl0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDYxlfTbfURkCCcFvey7CFHIbeKtRUbQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589211414820-qjdghiijvlne6c0e9qcngj254qg2gl0u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "589211414820-qkvghcli0hv4odops67baoo4v5qsa7v1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ionicapp.fastfood"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
