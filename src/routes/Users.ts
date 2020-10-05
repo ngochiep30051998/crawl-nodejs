@@ -15,6 +15,7 @@ const userDao = new UserDao();
  ******************************************************************************/
 
 router.get('/all', async (req: Request, res: Response) => {
+    return 123123;
     const users = await userDao.getAll();
     return res.status(OK).json({users});
 });

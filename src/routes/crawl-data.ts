@@ -37,7 +37,6 @@ router.get('/all', async (req: Request, res: Response) => {
                 const product = $(listItem[j]);
                 const id = $(product).attr('data-id');
                 const productUrl = `https://tiki.vn/api/v2/products/${id}`;
-                const productDetail = await axios.get(productUrl);
                 // const productDetail = {
                 //     title: $(product).find('.title').text().trim(),
                 //     image: $(product).find('img').attr('src'),
@@ -70,4 +69,13 @@ router.get('/all', async (req: Request, res: Response) => {
         console.error(e);
     }
 });
+
+router.get('/foody',async (req: Request, res: Response) =>{
+    const url = 'https://gappapi.deliverynow.vn/api/delivery/get_infos';
+    const params = {
+        restaurant_ids: [87201, 17036, 105260, 123400, 6451, 195959, 714204, 45097, 6452, 111511, 42603, 44367, 198641, 189507]
+    }
+    const responseData = await axios.post(url,params);
+    return res.status(OK).json({data: responseData.data});
+})
 export default router;

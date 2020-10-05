@@ -10,6 +10,8 @@ const http_status_codes_1 = require("http-status-codes");
 require("express-async-errors");
 const routes_1 = tslib_1.__importDefault(require("./routes"));
 const Logger_1 = tslib_1.__importDefault(require("@shared/Logger"));
+const admin = tslib_1.__importStar(require("firebase-admin"));
+const serviceAccount = require('../env/food-4dd37-firebase-adminsdk-i1w5b-cd5b497872.json');
 const app = express_1.default();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
@@ -27,11 +29,12 @@ app.use((err, req, res, next) => {
         error: err.message,
     });
 });
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: 'https://food-4dd37.firebaseio.com'
+});
 const viewsDir = path_1.default.join(__dirname, 'views');
 app.set('views', viewsDir);
 const staticDir = path_1.default.join(__dirname, 'public');
 app.use(express_1.default.static(staticDir));
-app.get('*', (req, res) => {
-    res.sendFile('index.html', { root: viewsDir });
-});
 exports.default = app;
