@@ -71,11 +71,13 @@ router.get('/all', async (req: Request, res: Response) => {
 });
 
 router.get('/foody',async (req: Request, res: Response) =>{
-    const url = 'https://gappapi.deliverynow.vn/api/delivery/get_infos';
+    const url = 'https://www.foody.vn/__get/AutoComplete/Keywords?provinceId=218&term=x%C3%B4i';
     const params = {
         restaurant_ids: [87201, 17036, 105260, 123400, 6451, 195959, 714204, 45097, 6452, 111511, 42603, 44367, 198641, 189507]
     }
-    const responseData = await axios.post(url,params);
+    const responseData = await axios.get(url);
+    const productUrl = 'https://www.foody.vn';
+    // for(const item of responseData){}
     return res.status(OK).json({data: responseData.data});
 })
 export default router;
