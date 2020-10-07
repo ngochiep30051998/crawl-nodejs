@@ -16,7 +16,11 @@ const fs = require('fs');
 
 const router = Router();
 
-
+const getId = (url: string) => {
+    const arr = url.split('/');
+    console.log(arr);
+    return arr[5];
+}
 
 router.get('/all', async (req: Request, res: Response) => {
     try {
@@ -109,4 +113,69 @@ router.get('/cat', async (req: Request, res: Response) => {
         data: items
     })
 })
+
+router.get('/banhmi', async (req: Request, res: Response) => {
+
+    const url = 'https://gappapi.deliverynow.vn/api/dish/get_delivery_dishes?request_id=635171&id_type=1';
+    const config = {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'vi,en-US;q=0.9,en;q=0.8,vi-VN;q=0.7,fr-FR;q=0.6,fr;q=0.5',
+            'origin': 'https://www.foody.vn',
+            'referer': 'https://www.foody.vn/',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36',
+            'x-foody-api-version': '1',
+            'x-foody-app-type': '1004',
+            'x-foody-client-id': '',
+            'x-foody-client-type': '1',
+            'x-foody-client-version': '1',
+        }
+    }
+
+
+    const listSrc = require('../assets/data/banhmi.json');
+
+    const data = [];
+    for(const src of listSrc){
+        const id = getId(src);
+        const productUrl = `https://gappapi.deliverynow.vn/api/delivery/get_detail?request_id=${id}&id_type=1`;
+        const productData = await axios.get(productUrl,config);
+        data.push(productData.data);
+    }
+    return res.json({
+        data
+    })
+})
+
+router.get('/banhmi-detail', async (req: Request, res: Response) => {
+
+    const url = 'https://gappapi.deliverynow.vn/api/delivery/get_detail?request_id=635171&id_type=1';
+    const config = {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'vi,en-US;q=0.9,en;q=0.8,vi-VN;q=0.7,fr-FR;q=0.6,fr;q=0.5',
+            'origin': 'https://www.foody.vn',
+            'referer': 'https://www.foody.vn/',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36',
+            'x-foody-api-version': '1',
+            'x-foody-app-type': '1004',
+            'x-foody-client-id': '',
+            'x-foody-client-type': '1',
+            'x-foody-client-version': '1',
+        }
+    }
+    const apiData = await axios.get(url, config);
+    return res.json({
+        data: apiData.data
+    })
+})
+
 export default router;
