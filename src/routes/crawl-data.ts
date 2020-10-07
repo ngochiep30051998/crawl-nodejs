@@ -1,13 +1,11 @@
-import { Request, Response, Router } from 'express';
-import { BAD_REQUEST, CREATED, OK } from 'http-status-codes';
-import { ParamsDictionary } from 'express-serve-static-core';
-'use strict';
-import { paramMissingError } from '@shared/constants';
-
-import rp from 'request-promise';
-import cheerio from 'cheerio';
 import axios from 'axios';
+import cheerio from 'cheerio';
+import { Request, Response, Router } from 'express';
 import * as admin from 'firebase-admin';
+import { OK } from 'http-status-codes';
+import rp from 'request-promise';
+'use strict';
+
 
 // tslint:disable-next-line: no-var-requires
 const fs = require('fs');
@@ -108,5 +106,32 @@ router.get('/cat', async (req: Request, res: Response) => {
         key: cat.key,
         data: items
     })
-})
+});
+
+router.get('/now-api', async (req: Request, res: Response) => {
+    const url = 'https://gappapi.deliverynow.vn/api/delivery/get_detail?id_type=2&request_id=10522';
+    const config = {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'accept-encoding': 'accept-encoding:',
+            'origin': 'https://www.now.vn',
+            'referer': 'https://www.now.vn/',
+            'accept-language': 'vi,en-US;q=0.9,en;q=0.8,vi-VN;q=0.7,fr-FR;q=0.6,fr;q=0.5',
+            'x-foody-access-token': '',
+            'x-foody-api-version': '1',
+            'x-foody-app-type': '1004',
+            'x-foody-client-id': '',
+            'x-foody-client-language': 'vi',
+            'x-foody-client-type': '1',
+            'x-foody-client-version': '3.0.0',
+        }
+    }
+
+    const data = {
+
+    }
+    const resData = await axios.get(url, config);
+    console.log(resData.data);
+    return res.json({ data: resData.data })
+});
 export default router;
