@@ -19,6 +19,10 @@ const getId = (url: string) => {
     return arr[5];
 }
 
+const findImage = (images: any = [], width: number, height: number) => {
+    const image = images.find((x: any) => x.width === width && x.height === height)
+    return image && image.value ? image.value : '';
+}
 router.get('/all', async (req: Request, res: Response) => {
     try {
         const URL = `https://tiki.vn/bach-hoa-online/c4384?src=c.4384.hamburger_menu_fly_out_banner`;
@@ -112,8 +116,8 @@ router.get('/cat', async (req: Request, res: Response) => {
 })
 
 router.get('/banhmi', async (req: Request, res: Response) => {
+    const catId = '-MIyqjAJJdbiWeKDeYtC';
 
-    const url = 'https://gappapi.deliverynow.vn/api/dish/get_delivery_dishes?request_id=635171&id_type=1';
     const config = {
         headers: {
             'accept': 'application/json, text/plain, */*',
@@ -137,20 +141,42 @@ router.get('/banhmi', async (req: Request, res: Response) => {
     const listSrc = require('../assets/data/banhmi.json');
 
     const data = [];
-    for(const src of listSrc){
+    for (const src of listSrc) {
         const id = getId(src);
+
         const productUrl = `https://gappapi.deliverynow.vn/api/delivery/get_detail?request_id=${id}&id_type=1`;
-        const productData = await axios.get(productUrl,config);
-        data.push(productData.data);
+
+        const productData = await axios.get(productUrl, config);
+        let productDetail: any = { ...productData.data.reply.delivery_detail };
+        const product = {
+            id,
+            name: productDetail.name || '',
+            displayImage: findImage(productDetail.photos, 640, 400),
+            price:productDetail && productDetail.min_order_value && productDetail.min_order_value.value || 30000,
+        }
+        // tslint:disable-next-line: variable-name
+        const res_photos = productDetail && productDetail.res_photos ? productDetail.res_photos : []
+        admin.database().ref(`categories/${catId}/products/${id}`).set(product).then((newProduct) => {
+            if(productDetail.res_photos){
+                // tslint:disable-next-line: variable-name
+                for (const res_photo of res_photos) {
+                    const p = findImage(res_photo.photos, 640, 400);
+                    admin.database().ref(`categories/${catId}/products/${id}/photos`).push(p)
+                }
+            }
+        });
+
+        data.push({...product,res_photos});
     }
     return res.json({
+        mess: 'success',
         data
     })
 })
 
-router.get('/banhmi-detail', async (req: Request, res: Response) => {
+router.get('/comrang', async (req: Request, res: Response) => {
+    const catId = '-MIys7i-9MBKrV-OpmBM';
 
-    const url = 'https://gappapi.deliverynow.vn/api/delivery/get_detail?request_id=635171&id_type=1';
     const config = {
         headers: {
             'accept': 'application/json, text/plain, */*',
@@ -169,10 +195,277 @@ router.get('/banhmi-detail', async (req: Request, res: Response) => {
             'x-foody-client-version': '1',
         }
     }
-    const apiData = await axios.get(url, config);
+
+
+    const listSrc = require('../assets/data/comrang.json');
+
+    const data = [];
+    for (const src of listSrc) {
+        const id = getId(src);
+
+        const productUrl = `https://gappapi.deliverynow.vn/api/delivery/get_detail?request_id=${id}&id_type=1`;
+
+        const productData = await axios.get(productUrl, config);
+        let productDetail: any = { ...productData.data.reply.delivery_detail };
+        const product = {
+            id,
+            name: productDetail.name || '',
+            displayImage: findImage(productDetail.photos, 640, 400),
+            price:productDetail && productDetail.min_order_value && productDetail.min_order_value.value || 30000,
+        }
+        // tslint:disable-next-line: variable-name
+        const res_photos = productDetail && productDetail.res_photos ? productDetail.res_photos : []
+        admin.database().ref(`categories/${catId}/products/${id}`).set(product).then((newProduct) => {
+            if(productDetail.res_photos){
+                // tslint:disable-next-line: variable-name
+                for (const res_photo of res_photos) {
+                    const p = findImage(res_photo.photos, 640, 400);
+                    admin.database().ref(`categories/${catId}/products/${id}/photos`).push(p)
+                }
+            }
+        });
+
+        data.push({...product,res_photos});
+    }
     return res.json({
-        data: apiData.data
+        mess: 'success',
+        data
     })
 })
 
+router.get('/pho', async (req: Request, res: Response) => {
+    const catId = '-MIyqc-mRxt8UccHAOBZ';
+
+    const config = {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'vi,en-US;q=0.9,en;q=0.8,vi-VN;q=0.7,fr-FR;q=0.6,fr;q=0.5',
+            'origin': 'https://www.foody.vn',
+            'referer': 'https://www.foody.vn/',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36',
+            'x-foody-api-version': '1',
+            'x-foody-app-type': '1004',
+            'x-foody-client-id': '',
+            'x-foody-client-type': '1',
+            'x-foody-client-version': '1',
+        }
+    }
+
+
+    const listSrc = require('../assets/data/pho.json');
+
+    const data = [];
+    for (const src of listSrc) {
+        const id = getId(src);
+
+        const productUrl = `https://gappapi.deliverynow.vn/api/delivery/get_detail?request_id=${id}&id_type=1`;
+
+        const productData = await axios.get(productUrl, config);
+        let productDetail: any = { ...productData.data.reply.delivery_detail };
+        const product = {
+            id,
+            name: productDetail.name || '',
+            displayImage: findImage(productDetail.photos, 640, 400),
+            price:productDetail && productDetail.min_order_value && productDetail.min_order_value.value || 30000,
+        }
+        // tslint:disable-next-line: variable-name
+        const res_photos = productDetail && productDetail.res_photos ? productDetail.res_photos : []
+        admin.database().ref(`categories/${catId}/products/${id}`).set(product).then((newProduct) => {
+            if(productDetail.res_photos){
+                // tslint:disable-next-line: variable-name
+                for (const res_photo of res_photos) {
+                    const p = findImage(res_photo.photos, 640, 400);
+                    admin.database().ref(`categories/${catId}/products/${id}/photos`).push(p)
+                }
+            }
+        });
+
+        data.push({...product,res_photos});
+    }
+    return res.json({
+        mess: 'success',
+        data
+    })
+})
+
+router.get('/com', async (req: Request, res: Response) => {
+    const catId = '-MIyqPkogem_wdARRdmk';
+
+    const config = {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'vi,en-US;q=0.9,en;q=0.8,vi-VN;q=0.7,fr-FR;q=0.6,fr;q=0.5',
+            'origin': 'https://www.foody.vn',
+            'referer': 'https://www.foody.vn/',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36',
+            'x-foody-api-version': '1',
+            'x-foody-app-type': '1004',
+            'x-foody-client-id': '',
+            'x-foody-client-type': '1',
+            'x-foody-client-version': '1',
+        }
+    }
+
+
+    const listSrc = require('../assets/data/com.json');
+
+    const data = [];
+    for (const src of listSrc) {
+        const id = getId(src);
+
+        const productUrl = `https://gappapi.deliverynow.vn/api/delivery/get_detail?request_id=${id}&id_type=1`;
+
+        const productData = await axios.get(productUrl, config);
+        let productDetail: any = { ...productData.data.reply.delivery_detail };
+        const product = {
+            id,
+            name: productDetail.name || '',
+            displayImage: findImage(productDetail.photos, 640, 400),
+            price:productDetail && productDetail.min_order_value && productDetail.min_order_value.value || 30000,
+        }
+        // tslint:disable-next-line: variable-name
+        const res_photos = productDetail && productDetail.res_photos ? productDetail.res_photos : []
+        admin.database().ref(`categories/${catId}/products/${id}`).set(product).then((newProduct) => {
+            if(productDetail.res_photos){
+                // tslint:disable-next-line: variable-name
+                for (const res_photo of res_photos) {
+                    const p = findImage(res_photo.photos, 640, 400);
+                    admin.database().ref(`categories/${catId}/products/${id}/photos`).push(p)
+                }
+            }
+        });
+
+        data.push({...product,res_photos});
+    }
+    return res.json({
+        mess: 'success',
+        data
+    })
+})
+
+router.get('/bun', async (req: Request, res: Response) => {
+    const catId = '-MIyrLUfaY5rW-KKYEfp';
+
+    const config = {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'vi,en-US;q=0.9,en;q=0.8,vi-VN;q=0.7,fr-FR;q=0.6,fr;q=0.5',
+            'origin': 'https://www.foody.vn',
+            'referer': 'https://www.foody.vn/',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36',
+            'x-foody-api-version': '1',
+            'x-foody-app-type': '1004',
+            'x-foody-client-id': '',
+            'x-foody-client-type': '1',
+            'x-foody-client-version': '1',
+        }
+    }
+
+
+    const listSrc = require('../assets/data/bun.json');
+
+    const data = [];
+    for (const src of listSrc) {
+        const id = getId(src);
+
+        const productUrl = `https://gappapi.deliverynow.vn/api/delivery/get_detail?request_id=${id}&id_type=1`;
+
+        const productData = await axios.get(productUrl, config);
+        let productDetail: any = { ...productData.data.reply.delivery_detail };
+        const product = {
+            id,
+            name: productDetail.name || '',
+            displayImage: findImage(productDetail.photos, 640, 400),
+            price:productDetail && productDetail.min_order_value && productDetail.min_order_value.value || 30000,
+        }
+        // tslint:disable-next-line: variable-name
+        const res_photos = productDetail && productDetail.res_photos ? productDetail.res_photos : []
+        admin.database().ref(`categories/${catId}/products/${id}`).set(product).then((newProduct) => {
+            if(productDetail.res_photos){
+                // tslint:disable-next-line: variable-name
+                for (const res_photo of res_photos) {
+                    const p = findImage(res_photo.photos, 640, 400);
+                    admin.database().ref(`categories/${catId}/products/${id}/photos`).push(p)
+                }
+            }
+        });
+
+        data.push({...product,res_photos});
+    }
+    return res.json({
+        mess: 'success',
+        data
+    })
+})
+
+router.get('/trasua', async (req: Request, res: Response) => {
+    const catId = '-MIyt2n7Qzs3h4MpP7KN';
+
+    const config = {
+        headers: {
+            'accept': 'application/json, text/plain, */*',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'vi,en-US;q=0.9,en;q=0.8,vi-VN;q=0.7,fr-FR;q=0.6,fr;q=0.5',
+            'origin': 'https://www.foody.vn',
+            'referer': 'https://www.foody.vn/',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36',
+            'x-foody-api-version': '1',
+            'x-foody-app-type': '1004',
+            'x-foody-client-id': '',
+            'x-foody-client-type': '1',
+            'x-foody-client-version': '1',
+        }
+    }
+
+
+    const listSrc = require('../assets/data/trasua.json');
+
+    const data = [];
+    for (const src of listSrc) {
+        const id = getId(src);
+
+        const productUrl = `https://gappapi.deliverynow.vn/api/delivery/get_detail?request_id=${id}&id_type=1`;
+
+        const productData = await axios.get(productUrl, config);
+        let productDetail: any = { ...productData.data.reply.delivery_detail };
+        const product = {
+            id,
+            name: productDetail.name || '',
+            displayImage: findImage(productDetail.photos, 640, 400),
+            price:productDetail && productDetail.min_order_value && productDetail.min_order_value.value || 30000,
+        }
+        // tslint:disable-next-line: variable-name
+        const res_photos = productDetail && productDetail.res_photos ? productDetail.res_photos : []
+        admin.database().ref(`categories/${catId}/products/${id}`).set(product).then((newProduct) => {
+            if(productDetail.res_photos){
+                // tslint:disable-next-line: variable-name
+                for (const res_photo of res_photos) {
+                    const p = findImage(res_photo.photos, 640, 400);
+                    admin.database().ref(`categories/${catId}/products/${id}/photos`).push(p)
+                }
+            }
+        });
+
+        data.push({...product,res_photos});
+    }
+    return res.json({
+        mess: 'success',
+        data
+    })
+})
 export default router;

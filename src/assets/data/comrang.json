@@ -1,134 +1,26 @@
 [
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/27b73442-ffea-4c94-8a47-47631460c425.jpg",
-        "title": "Cơm rang gà quay",
-        "content": "",
-        "price": "60,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/2016817144139-com-rang-dua-bo.jpg",
-        "title": "Cơm rang dưa bò",
-        "content": "",
-        "price": "40,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/2016817144335-com-rang-suon.jpg",
-        "title": "Cơm rang sườn",
-        "content": "",
-        "price": "65,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/2016817144416-com-rang-thap-cam.jpg",
-        "title": "Cơm rang thập cẩm",
-        "content": "",
-        "price": "40,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/2016817145118-com-rang-xa-xiu.jpg",
-        "title": "Cơm rang thịt nướng",
-        "content": "",
-        "price": "65,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/2016817144927-com-trang-ga-quay.jpg",
-        "title": "Cơm trắng gà quay",
-        "content": "",
-        "price": "60,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/2016817145858-dau-thit-kho.jpg",
-        "title": "Cơm trắng đậu thịt kho (vừa)",
-        "content": "",
-        "price": "40,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/0f46b9a1-14c7-4876-a1dd-9d0caf847980.jpg",
-        "title": "Cơm Trắng Gà Rang Sốt Đậu",
-        "content": "",
-        "price": "35,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/0f40b146-b563-43f7-aef6-57127a48f983.jpg",
-        "title": "Cơm Văn Phòng",
-        "content": "",
-        "price": "35,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/368bafd3-7eb3-458b-9655-1a043c31dc6f.jpeg",
-        "title": "Bún chả",
-        "content": "",
-        "price": "40,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/c2751c3b-eb5e-45a2-8dd4-552086735b09.jpeg",
-        "title": "bún thịt nướng",
-        "content": "",
-        "price": "45,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/default/s120x120/deli-dish-no-image.png",
-        "title": "nem rán",
-        "content": "",
-        "price": "10,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/default/s120x120/deli-dish-no-image.png",
-        "title": "cơm rang  gà quay xuất bé",
-        "content": "",
-        "price": "40,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/default/s120x120/deli-dish-no-image.png",
-        "title": "cơm rang sườn xuất bé",
-        "content": "",
-        "price": "40,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/a8dde87c-9c91-4449-957f-69ec0b8c2052.jpg",
-        "title": "Ngan Nửa Con",
-        "content": "Kèm canh măng + buns",
-        "price": "160,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/601cc211-9e47-4c06-9ee4-fa237079bff6.jpeg",
-        "title": "bún giả cày",
-        "content": "",
-        "price": "50,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/default/s120x120/deli-dish-no-image.png",
-        "title": "cơm trắng gà quay  xuất bé",
-        "content": "",
-        "price": "40,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/default/s120x120/deli-dish-no-image.png",
-        "title": "cơm trắng sườn   xuất bé",
-        "content": "",
-        "price": "40,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/default/s120x120/deli-dish-no-image.png",
-        "title": "xôi gà quay  xuất bé",
-        "content": "",
-        "price": "40,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/default/s120x120/deli-dish-no-image.png",
-        "title": "xôi sườn xuất bé",
-        "content": "",
-        "price": "40,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/140d6bd7-6c65-4b19-b5dc-4b2806ad0b0a.jpg",
-        "title": "Ngan Cả Con ( có bún  + canh măng )",
-        "content": "Kèm canh măng + buns",
-        "price": "300,000đ"
-    },
-    {
-        "image": "https://images.foody.vn/res/g2/13882/s120x120/201881010317-com-rang-dua-bo-suat-lon.jpg",
-        "title": "Cơm rang dưa bò suất lớn",
-        "content": "",
-        "price": "50,000đ"
-    }
+    "https://images.foody.vn/res/g2/13882/prof/s640x400/image-f6e1d73b-200910115822.jpeg",
+    "https://images.foody.vn/res/g9/88765/prof/s640x400…e-com-rang-ngo-trang-t-844-635811281610352229.jpg",
+    "https://images.foody.vn/res/g67/664977/prof/s640x4…foody-upload-api-foody-mobile-23-190508123525.jpg",
+    "https://images.foody.vn/res/g72/712278/prof/s640x400/image-4f7b839e-200910115814.jpeg",
+    "https://images.foody.vn/res/g29/283242/prof/s640x4…oody-mobile-cr-cay-jpg-389-636117103004526641.jpg",
+    "https://images.foody.vn/res/g104/1031654/prof/s640…oody-upload-api-foody-mobile-110-200623110102.jpg",
+    "https://images.foody.vn/res/g2/19106/prof/s640x400/foody-mobile-com-rang-nguyen-du-ha-noi.jpg",
+    "https://images.foody.vn/res/g81/800274/prof/s640x400/image-3268f6af-200910115829.jpeg",
+    "https://images.foody.vn/res/g19/180102/prof/s640x400/image-1142eab8-200910115828.jpeg",
+    "https://images.foody.vn/res/g97/968750/prof/s640x400/image-05d243c9-200908105308.jpeg",
+    "https://images.foody.vn/res/g5/47638/prof/s640x400/image-219acce5-200910115828.jpeg",
+    "https://images.foody.vn/res/g17/163161/prof/s640x4…bile-chi-xi-gon-mb-jpg-875-635811196006293874.jpg",
+    "https://images.foody.vn/res/g96/954007/prof/s640x400/image-034b661d-200910115814.jpeg",
+    "https://images.foody.vn/res/g7/68044/prof/s640x400…oody-mobile-106805830_1363912081-200907153848.jpg",
+    "https://images.foody.vn/res/g29/284657/prof/s640x400/image-c45398a7-200910115822.jpeg",
+    "https://images.foody.vn/res/g67/661339/prof/s640x4…ad-api-foody-mobile-pho-hien-jpg-181208143232.jpg",
+    "https://images.foody.vn/res/g3/24309/prof/s640x400/foody-mobile-my-hai-ga-quay-chim-quay-ha-noi.jpg",
+    "https://images.foody.vn/res/g32/314278/prof/s640x400/foody-mobile-2-jpg-514-636180253515274753.jpg",
+    "https://images.foody.vn/res/g72/717558/prof/s640x400/foody-mobile-16003020_75251609823.jpg",
+    "https://images.foody.vn/res/g5/40466/prof/s640x400…dy-upload-api-foody-mobile-avar5-190807095539.jpg",
+    "https://images.foody.vn/res/g102/1014235/prof/s640…oody-mobile-foody-com-rang-dua-b-200320150525.jpg",
+    "https://images.foody.vn/res/g7/69909/prof/s640x400/foody-mobile-as2-jpg-922-635778450144657911.jpg",
+    "https://images.foody.vn/res/g92/912489/prof/s640x4…-upload-api-foody-mobile-comrang-190506111339.jpg",
+    "https://images.foody.vn/res/g63/629865/prof/s640x4…foody-mobile-pb-cr-jpg-432-636207897250143993.jpg"
 ]
