@@ -18,7 +18,6 @@ const router = Router();
 
 const getId = (url: string) => {
     const arr = url.split('/');
-    console.log(arr);
     return arr[5];
 }
 
